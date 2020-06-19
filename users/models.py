@@ -44,7 +44,7 @@ class User(AbstractUser):
     )
 
     avatar = models.ImageField(blank=True)
-    empoyeeNumber = models.IntegerField(null=True, blank=True)
+    empoyee_number = models.IntegerField(null=True, blank=True)
     coe = models.CharField(choices=COE_CHOICES, max_length=10, blank=True)
     part = models.CharField(choices=PART_CHOICES, max_length=10, blank=True)
     superuser = models.BooleanField(default=False)
