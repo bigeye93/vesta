@@ -45,6 +45,9 @@ PROJECT_APPS = [
     "core.apps.CoreConfig",
     "users.apps.UsersConfig",
     "testcases.apps.TestcasesConfig",
+    "issues.apps.IssuesConfig",
+    "projects.apps.ProjectsConfig",
+    "testcoverages.apps.TestcoveragesConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
