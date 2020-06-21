@@ -7,18 +7,19 @@ class ProjectAdmin(admin.ModelAdmin):
 
     """ Project Admin Definition """
 
+    def get_related_issues(self, obj):
+        related_issues = obj.issues.count()
+        return related_issues
+
+    get_related_issues.short_description = "issues"
+
     fieldsets = (
         ("Project Info", {"fields": ("product", "phase",)},),
         (
             "Verification Info",
             {
                 "classes": ("collapse",),
-                "fields": (
-                    "status",
-                    "verification_start",
-                    "verification_end",
-                    # "testcases",
-                ),
+                "fields": ("status", "verification_start", "verification_end",),
             },
         ),
     )
@@ -28,6 +29,7 @@ class ProjectAdmin(admin.ModelAdmin):
         "product",
         "phase",
         "status",
+        "get_related_issues",
         "verification_start",
         "verification_end",
     )
@@ -38,5 +40,3 @@ class ProjectAdmin(admin.ModelAdmin):
     )
 
     search_fields = ("product",)
-
-    # filter_horizontal = ("testcases",)

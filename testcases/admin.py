@@ -17,6 +17,12 @@ class TestcaseAdmin(admin.ModelAdmin):
 
     """ Testcase Admin Definition """
 
+    def get_related_issues(self, obj):
+        related_issues = obj.issues.count()
+        return related_issues
+
+    get_related_issues.short_description = "issues"
+
     fieldsets = (
         (
             "Basic Info",
@@ -47,6 +53,7 @@ class TestcaseAdmin(admin.ModelAdmin):
         "sub_category",
         "name",
         "owner",
+        "get_related_issues",
     )
 
     list_filter = (

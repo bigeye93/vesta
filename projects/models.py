@@ -52,16 +52,13 @@ class Project(core_models.TimeStampedModel):
 
     # verification info
     status = models.CharField(
-        max_length=12, choices=STATUS_CHOICES, default=STATUS_INPROGRESS
+        max_length=20, choices=STATUS_CHOICES, default=STATUS_INPROGRESS
     )
     verification_start = models.DateField(null=True, blank=True)
     verification_end = models.DateField(null=True, blank=True)
 
-    # TODO
-    # testcases = models.ManyToManyField("testcases.Testcase", blank=True)
-
-    # TODO
-    # linked_issues = models.ManyToManyField("issues.Issue", blank=True)
-
     def __str__(self):
-        return f"{str(self.product)} - phase{self.phase}"
+        if self.product is None or self.phase is None:
+            return "[temp] update product & phase info"
+        else:
+            return f"{str(self.product)} - phase{self.phase}"

@@ -58,15 +58,14 @@ class Testcase(core_models.TimeStampedModel):
     description = models.TextField(blank=True)
 
     # filtering info
-    products = models.ManyToManyField("products.Product", blank=True)
+    products = models.ManyToManyField(
+        "products.Product", related_name="testcases", blank=True
+    )
     customers = models.ManyToManyField("CustomerType", blank=True)
     phases = models.ManyToManyField("PhaseType", blank=True)
     condition = models.ForeignKey(
         "ConditionType", null=True, blank=True, on_delete=models.SET_NULL
     )
-
-    # TODO
-    # linked_issues
 
     def __str__(self):
         return str(self.uid)

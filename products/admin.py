@@ -17,7 +17,13 @@ class ProductAdmin(admin.ModelAdmin):
 
     """ Product Admin Definition """
 
-    list_display = ("product",)
+    def get_related_testcases(self, obj):
+        related_issues = obj.testcases.count()
+        return related_issues
+
+    get_related_testcases.short_description = "testcases"
+
+    list_display = ("product", "get_related_testcases")
 
     list_filter = (
         "nand_types",
