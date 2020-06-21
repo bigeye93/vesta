@@ -7,12 +7,16 @@ from . import models
 class CustomUserAdmin(UserAdmin):
     """ Custom User Admin """
 
-    list_display = ("username", "email", "coe", "part", "superuser")
+    list_display = (
+        "username",
+        "get_full_name",
+        "coe",
+        "part",
+        "empoyee_number",
+    )
+
     list_filter = ("coe", "part")
 
     fieldsets = UserAdmin.fieldsets + (
-        (
-            "Custom Profile",
-            {"fields": ("avatar", "empoyee_number", "coe", "part", "superuser",)},
-        ),
+        ("Custom Profile", {"fields": ("avatar", "empoyee_number", "coe", "part",)},),
     )

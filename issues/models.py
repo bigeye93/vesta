@@ -6,16 +6,27 @@ class Issue(core_models.TimeStampedModel):
 
     """ Issue Model Definition """
 
-    # product phase capacity
-    product = 1  # foreign
-    phase = 1  # foreign
-    capacity = 1  # many to many
+    # project info
+    project = models.ForeignKey(
+        "projects.Project",
+        related_name="issues",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+    )
 
+    # testcase info
+    testcases = models.ManyToManyField(
+        "testcases.Testcase", related_name="issues", blank=True
+    )
+
+    # jira info
     jira_number = models.CharField(max_length=10)
-    jira_status = 1  # Get from jira
-    date_opened = 1  # Get from jira or date field
-    assignee = models.ForeignKey("users.User", on_delete=models.PROTECT)
-    testcase = models.ForeignKey("testcases.Testcase", on_delete=models.PROTECT)
+    jira_status = models.CharField(max_length=10)
+    date_opened = models.DateField(null=True, blank=True)
+    assignee = models.ForeignKey(
+        "users.User", null=True, blank=True, on_delete=models.SET_NULL
+    )
 
     def __str__(self):
-        return f"{self.product} - {self.jira_number}"
+        return str(self.jira_number)

@@ -6,18 +6,13 @@ class AbstractItem(core_models.TimeStampedModel):
 
     """ Abstract Item Definition """
 
-    name = models.CharField(max_length=80)
+    name = models.CharField(max_length=200)
 
     class Meta:
         abstract = True
 
     def __str__(self):
-        return self.name
-
-
-class ProductType(AbstractItem):
-
-    pass
+        return str(self.name)
 
 
 class CapacityType(AbstractItem):
@@ -49,25 +44,24 @@ class Project(core_models.TimeStampedModel):
         (STATUS_CANCELED, "Canceled"),
     )
 
-    product = 1
-    capacities = 1
-    nand_type = 1
-    soc_type = 1
-    phase = 1
+    # project info
+    product = models.ForeignKey(
+        "products.Product", null=True, blank=True, on_delete=models.SET_NULL
+    )
+    phase = models.IntegerField(null=True, blank=True)
 
+    # verification info
     status = models.CharField(
         max_length=12, choices=STATUS_CHOICES, default=STATUS_INPROGRESS
     )
-    verification_start = models.DateField()
-    verification_end = models.DateField()
+    verification_start = models.DateField(null=True, blank=True)
+    verification_end = models.DateField(null=True, blank=True)
 
-    testcases = 1  # many to many
+    # TODO
+    # testcases = models.ManyToManyField("testcases.Testcase", blank=True)
 
-    progress = 1
-    linked_issue = 1
+    # TODO
+    # linked_issues = models.ManyToManyField("issues.Issue", blank=True)
 
-    # guest = models.ForeignKey("users.User", on_delete=models.CASCADE)
-    # room = models.ForeignKey("rooms.Room", on_delete=models.CASCADE)
-
-    # def __str__(self):
-    #     return f"{self.room} - {self.check_in}"
+    def __str__(self):
+        return f"{str(self.product)} - phase{self.phase}"

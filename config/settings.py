@@ -48,6 +48,8 @@ PROJECT_APPS = [
     "issues.apps.IssuesConfig",
     "projects.apps.ProjectsConfig",
     "testcoverages.apps.TestcoveragesConfig",
+    "products.apps.ProductsConfig",
+    "testresults.apps.TestresultsConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
@@ -127,3 +129,7 @@ USE_TZ = True
 STATIC_URL = "/static/"
 
 AUTH_USER_MODEL = "users.User"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+MEDIA_URL = "/media/"

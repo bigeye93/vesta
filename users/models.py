@@ -27,9 +27,13 @@ class User(AbstractUser):
         (PART_OTHER, "Other"),
     )
 
-    avatar = models.ImageField(blank=True)
+    avatar = models.ImageField(upload_to="avatars", blank=True)
     empoyee_number = models.IntegerField(null=True, blank=True)
     coe = models.CharField(choices=COE_CHOICES, max_length=10, blank=True)
     part = models.CharField(choices=PART_CHOICES, max_length=10, blank=True)
-    superuser = models.BooleanField(default=False)
-    # project # many to many
+
+    def get_full_name(self):
+        full_name = super().last_name + super().first_name
+        return full_name
+
+    get_full_name.short_description = "Full name (kr)"

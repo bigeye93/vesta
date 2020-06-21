@@ -7,4 +7,11 @@ class IssueAdmin(admin.ModelAdmin):
 
     """ Issue Admin Definition """
 
-    pass
+    fieldsets = (
+        ("Project Info", {"fields": ("project",)},),
+        ("Testcase Info", {"fields": ("testcases",)},),
+        (
+            "Jira Info",
+            {"fields": ("jira_number", "jira_status", "date_opened", "assignee",),},
+        ),
+    )

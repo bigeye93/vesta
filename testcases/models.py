@@ -12,7 +12,7 @@ class AbstractItem(core_models.TimeStampedModel):
         abstract = True
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
 
 class PlatformType(AbstractItem):
@@ -22,7 +22,6 @@ class PlatformType(AbstractItem):
     # class Meta:
     #     verbose_name = "Platform Types"
     #     ordering = ["name"]
-
     pass
 
 
@@ -45,21 +44,29 @@ class Testcase(core_models.TimeStampedModel):
 
     """ Testcase Model Definition """
 
+    # basic info
     uid = models.CharField(max_length=20)
-    name = models.CharField(max_length=140)
-    platorm = models.ManyToManyField("PlatformType", blank=True)
-    category = models.CharField(max_length=140)
-    sub_category = models.CharField(max_length=140)
-    owner = models.ForeignKey("users.User", on_delete=models.PROTECT)
-    description = models.TextField()
+    platorm = models.ForeignKey(
+        "PlatformType", null=True, blank=True, on_delete=models.SET_NULL
+    )
+    category = models.CharField(max_length=200)
+    sub_category = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
+    owner = models.ForeignKey(
+        "users.User", null=True, blank=True, on_delete=models.SET_NULL
+    )
+    description = models.TextField(blank=True)
 
-    # project = models.ManyToManyField(RoomType, blank=True) # many to many
-    customer = models.ManyToManyField("CustomerType", blank=True)
-    phase = models.ManyToManyField("PhaseType", blank=True)
-    condition = models.ManyToManyField("ConditionType", blank=True)
+    # filtering info
+    products = models.ManyToManyField("products.Product", blank=True)
+    customers = models.ManyToManyField("CustomerType", blank=True)
+    phases = models.ManyToManyField("PhaseType", blank=True)
+    condition = models.ForeignKey(
+        "ConditionType", null=True, blank=True, on_delete=models.SET_NULL
+    )
 
-    # history = 1 # TBD
-    # linked_issue = 1 # TBD
+    # TODO
+    # linked_issues
 
     def __str__(self):
-        return self.name
+        return str(self.uid)

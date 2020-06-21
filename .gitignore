@@ -139,3 +139,5 @@ cython_debug/
 
 # vsc
 vesta.code-workspace
+
+media/
