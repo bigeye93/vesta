@@ -4,5 +4,7 @@
 		"path": "."
 	}
 ],
-  "settings": {}
+"settings": {
+	"python.pythonPath": "C:\\Users\\young\\.virtualenvs\\vesta-ZUrDoI7r\\Scripts\\python.exe"
+}
 }
