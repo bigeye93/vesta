@@ -1,10 +1,19 @@
-from django.shortcuts import render
+from django.views.generic import ListView
+from django.utils import timezone
 from . import models
 
-# from django.http import HttpResponse
 
+class HomeView(ListView):
+    """ HomeView Definition """
 
-def all_products(request):
-    # return HttpResponse(content="hello")
-    all_products = models.Product.objects.all()
-    return render(request, "products/home.html", context={"products": all_products,})
+    model = models.Product
+    paginate_by = 10
+    paginate_orphans = 5
+    ordering = "created"
+    context_object_name = "products"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        now = timezone.now()
+        context["now"] = now
+        return context

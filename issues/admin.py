@@ -9,9 +9,6 @@ class IssueAdmin(admin.ModelAdmin):
 
     fieldsets = (
         ("Project Info", {"fields": ("project",)},),
-        ("Testcase Info", {"fields": ("testcases",)},),
-        (
-            "Jira Info",
-            {"fields": ("jira_number", "jira_status", "date_opened", "assignee",),},
-        ),
+        ("Testcase Info", {"fields": ("testcase",)},),
+        ("Jira Info", {"fields": ("jira_number",),},),
     )

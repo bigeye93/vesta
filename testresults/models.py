@@ -20,15 +20,15 @@ class Testresult(core_models.TimeStampedModel):
         (STATUS_NA, "N/A"),
     )
 
-    project = models.ForeignKey(
-        "projects.Project", null=True, blank=True, on_delete=models.SET_NULL
-    )
-
     testcase = models.ForeignKey(
         "testcases.Testcase", null=True, blank=True, on_delete=models.SET_NULL
     )
 
-    result = models.CharField(
+    project = models.ForeignKey(
+        "projects.Project", null=True, blank=True, on_delete=models.SET_NULL
+    )
+
+    status = models.CharField(
         max_length=20, choices=STATUS_CHOICES, default=STATUS_INPROGRESS
     )
 
@@ -38,4 +38,4 @@ class Testresult(core_models.TimeStampedModel):
         if self.project is None or self.testcase is None:
             return "[temp] update project & testcase info"
         else:
-            return f"{str(self.updated)} - pid{str(self.project.product_id)}_phase{str(self.project.phase)}_{str(self.testcase.name)}"
+            return f"{str(self.updated)} - pid{str(self.project.product_id)}_{str(self.project.fw_rev)}_{str(self.testcase.name)}"

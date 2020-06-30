@@ -2,12 +2,12 @@ from django.contrib import admin
 from . import models
 
 
-# @admin.register(models.CoverageDataType)
-# class ItemAdmin(admin.ModelAdmin):
+@admin.register(models.CoverageKeyType)
+class ItemAdmin(admin.ModelAdmin):
 
-#     """ Item Admin Definition """
+    """ Item Admin Definition """
 
-#     pass
+    pass
 
 
 @admin.register(models.Testcoverage)

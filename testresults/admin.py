@@ -11,7 +11,7 @@ class TestresultAdmin(admin.ModelAdmin):
         "__str__",
         "project",
         "testcase",
-        "result",
+        "status",
         "description",
     )
 

@@ -3,7 +3,7 @@ from . import models
 
 
 @admin.register(
-    models.ProductType, models.CapacityType, models.NandType, models.SocType
+    models.ProductType, models.NandType, models.SocType, models.CustomerType
 )
 class ItemAdmin(admin.ModelAdmin):
 
@@ -17,21 +17,24 @@ class ProductAdmin(admin.ModelAdmin):
 
     """ Product Admin Definition """
 
-    def get_related_testcases(self, obj):
-        related_issues = obj.testcases.count()
-        return related_issues
+    # def get_related_testcases(self, obj):
+    #     related_issues = obj.testcases.count()
+    #     return related_issues
 
-    get_related_testcases.short_description = "testcases"
+    # get_related_testcases.short_description = "testcases"
 
-    list_display = ("product", "get_related_testcases")
+    # list_display = ("product", "get_related_testcases")
+
+    list_display = ("product",)
 
     list_filter = (
         "nand_types",
         "soc_types",
+        "customer_types",
     )
 
     filter_horizontal = (
-        "capacities",
         "nand_types",
         "soc_types",
+        "customer_types",
     )

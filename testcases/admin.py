@@ -3,7 +3,7 @@ from . import models
 
 
 @admin.register(
-    models.PlatformType, models.CustomerType, models.PhaseType, models.ConditionType,
+    models.CustomerType, models.PhaseType, models.ConditionType, models.LbaFormatType
 )
 class ItemAdmin(admin.ModelAdmin):
 
@@ -28,11 +28,12 @@ class TestcaseAdmin(admin.ModelAdmin):
             "Basic Info",
             {
                 "fields": (
-                    "uid",
-                    "platorm",
+                    "id_ext",
+                    "name",
+                    "script",
+                    "args",
                     "category",
                     "sub_category",
-                    "name",
                     "owner",
                     "description",
                 )
@@ -42,16 +43,22 @@ class TestcaseAdmin(admin.ModelAdmin):
             "Filtering Info",
             {
                 # "classes": ("collapse",),
-                "fields": ("products", "customers", "phases", "condition",),
+                "fields": (
+                    "condition",
+                    "phases",
+                    "customers",
+                    "lba_formats",
+                    "products",
+                ),
             },
         ),
     )
 
     list_display = (
-        "uid",
+        "id_ext",
+        "name",
         "category",
         "sub_category",
-        "name",
         "owner",
         "get_related_issues",
     )
@@ -63,7 +70,7 @@ class TestcaseAdmin(admin.ModelAdmin):
     )
 
     search_fields = (
-        "^uid",
+        "^id_ext",
         "products",
         "category",
         "sub_category",
@@ -71,7 +78,8 @@ class TestcaseAdmin(admin.ModelAdmin):
     )
 
     filter_horizontal = (
-        "products",
-        "customers",
         "phases",
+        "customers",
+        "lba_formats",
+        "products",
     )
