@@ -17,8 +17,8 @@ class AbstractItem(core_models.TimeStampedModel):
 
 class CoverageKeyType(AbstractItem):
 
-    group = models.CharField(max_length=200)
-    sub_group = models.CharField(max_length=200)
+    group_name = models.CharField(max_length=200)
+    key_name = models.CharField(max_length=200)
     data_type = models.CharField(max_length=200)
 
 

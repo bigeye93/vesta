@@ -14,19 +14,20 @@ class ProjectAdmin(admin.ModelAdmin):
     get_related_issues.short_description = "issues"
 
     fieldsets = (
-        ("Project Info", {"fields": ("product", "fw_rev", "customer")},),
-        # (
-        #     "Verification Info",
-        #     {
-        #         "classes": ("collapse",),
-        #         "fields": ("status", "verification_start", "verification_end",),
-        #     },
-        # ),
+        ("Project Info", {"fields": ("product", "phase", "fw_rev", "customer")},),
+        (
+            "Verification Info",
+            {
+                "classes": ("collapse",),
+                "fields": ("status", "verification_start", "verification_end",),
+            },
+        ),
     )
 
     list_display = (
         "__str__",
         "product",
+        "phase",
         "fw_rev",
         "get_related_issues",
     )

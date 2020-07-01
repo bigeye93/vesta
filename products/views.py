@@ -1,3 +1,4 @@
+from math import ceil
 from django.views.generic import ListView
 from django.utils import timezone
 from django.urls import reverse
@@ -23,8 +24,26 @@ class HomeView(ListView):
 
 def product_detail(request, pk):
     try:
+        page = request.GET.get("page", 1)
+        page = int(page or 1)
+        page_size = 2
+        page_offset = page_size * page - page_size
+
         product = models.Product.objects.get(pk=pk)
-        return render(request, "products/detail.html", {"product": product})
+
+        page_count = ceil(product.projects.count() / page_size)
+        projects = product.projects.all()[page_offset : page_offset + page_size]
+
+        return render(
+            request,
+            "products/detail.html",
+            {
+                "product": product,
+                "projects": projects,
+                "page": page,
+                "page_count": page_count,
+            },
+        )
     except models.Product.DoesNotExist:
         return redirect(reverse("core:home"))
 

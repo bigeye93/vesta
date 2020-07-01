@@ -44,8 +44,12 @@ class Product(core_models.TimeStampedModel):
     product_name = models.ForeignKey(
         "ProductType", null=True, blank=True, on_delete=models.SET_NULL,
     )
-    nand_types = models.ManyToManyField("NandType", blank=True)
-    soc_types = models.ManyToManyField("SoCType", blank=True)
+    nand_type = models.ForeignKey(
+        "NandType", null=True, blank=True, on_delete=models.SET_NULL,
+    )
+    soc_type = models.ForeignKey(
+        "SocType", null=True, blank=True, on_delete=models.SET_NULL,
+    )
     customer_types = models.ManyToManyField("CustomerType", blank=True)
 
     def __str__(self):

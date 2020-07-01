@@ -25,16 +25,15 @@ class ProductAdmin(admin.ModelAdmin):
 
     # list_display = ("product", "get_related_testcases")
 
-    list_display = ("product_name",)
+    list_display = (
+        "product_name",
+        "nand_type",
+        "soc_type",
+    )
 
     list_filter = (
-        "nand_types",
-        "soc_types",
-        "customer_types",
+        "nand_type",
+        "soc_type",
     )
 
-    filter_horizontal = (
-        "nand_types",
-        "soc_types",
-        "customer_types",
-    )
+    filter_horizontal = ("customer_types",)
