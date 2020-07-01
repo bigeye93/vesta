@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+
+{% block page_name %}
+    Home
+{% endblock page_name %}
+
+{% block content %}
+
+<div>
+    <h1>{{product.product_name}}</h1>
+</div>
+
+<div>
+    <h3>nand_types</h3>
+    <ul>
+    {% for nand in product.nand_types.all  %}
+        <li>{{nand}}</li>
+    {% endfor %}
+    </ul>
+    <h3>soc_types</h3>
+    <ul>
+    {% for soc in product.soc_types.all  %}
+        <li>{{soc}}</li>
+    {% endfor %}
+    </ul>
+    <h3>customer_types</h3>
+    <ul>
+    {% for customer in product.customer_types.all  %}
+        <li>{{customer}}</li>
+    {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

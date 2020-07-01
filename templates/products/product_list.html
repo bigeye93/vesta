@@ -11,7 +11,7 @@
     <h1> Select Product </h1>
 
     {% for product in products  %}
-        <li><a href=""> {{product}} </a></li>
+        <li><a href="{% url "products:detail" product.pk %}"> {{product}} </a></li>
     {% endfor %}
 
     <h5>

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from core import models as core_models
 
 
@@ -40,7 +41,7 @@ class Product(core_models.TimeStampedModel):
     """ Product Model Definition """
 
     # product info
-    product = models.ForeignKey(
+    product_name = models.ForeignKey(
         "ProductType", null=True, blank=True, on_delete=models.SET_NULL,
     )
     nand_types = models.ManyToManyField("NandType", blank=True)
@@ -48,4 +49,7 @@ class Product(core_models.TimeStampedModel):
     customer_types = models.ManyToManyField("CustomerType", blank=True)
 
     def __str__(self):
-        return str(self.product)
+        return str(self.product_name)
+
+    def get_absolute_url(self):
+        return reverse("products:detail", kwargs={"pk": self.pk})

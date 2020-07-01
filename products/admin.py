@@ -25,7 +25,7 @@ class ProductAdmin(admin.ModelAdmin):
 
     # list_display = ("product", "get_related_testcases")
 
-    list_display = ("product",)
+    list_display = ("product_name",)
 
     list_filter = (
         "nand_types",
