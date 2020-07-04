@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+    Search
+{% endblock page_title %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+
+    <h2>Search!</h2>
+
+    <h4>Searching by {{product}}</h4>
+
+    <form method="get" action="{% url "products:search" %}">
+        <div>
+            <label for="product_name">Product</label>
+            <input value="{{product_name}}" id="product_name" name="product_name" placeholder="Search By Product" />
+        </div>
+        <button>Search</button>
+    </form>
+
+{% endblock content %} 

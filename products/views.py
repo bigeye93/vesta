@@ -47,3 +47,7 @@ def product_detail(request, pk):
     except models.Product.DoesNotExist:
         return redirect(reverse("core:home"))
 
+
+def search(request):
+    product = request.GET.get("product_name", "product")
+    return render(request, "products/search.html", {"product": product})
