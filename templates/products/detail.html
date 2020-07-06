@@ -34,7 +34,7 @@
         <li>create</li>
 
         {% for project in projects %}
-            <li><a href="{% url "project:detail" project.pk %}">{{project}}</a></li>
+            <li><a href="{% url "projects:detail" project.pk %}">{{project}}</a></li>
         {% endfor %}
 
         <h5>
