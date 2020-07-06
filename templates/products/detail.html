@@ -20,7 +20,7 @@
     <ul>
         <li>{{product.nand_type}}</li>
     </ul>
-    <h3>Sustomers</h3>
+    <h3>Customers</h3>
     <ul>
     {% for customer in product.customer_types.all  %}
         <li>{{customer}}</li>
@@ -32,7 +32,10 @@
     <h1>Project management</h1>
     <ul>
         <li>create</li>
-        <li>update</li>
+
+        {% for project in projects %}
+            <li><a href="{% url "project:detail" project.pk %}">{{project}}</a></li>
+        {% endfor %}
 
         <h5>
             {% if page is not 1 %}
@@ -45,31 +48,14 @@
                 <a href="?page={{page|add:1}}">Next</a>
             {% endif %}
         </h5>
-
-        <h3>Test result</h3>
-        <ul>
-            {% for project in projects %}
-                <li>{{project}}</li>
-            {% endfor %}
-
-            
-        </ul>
-        
-        <h3>Test coverage</h3>
-        <ul>
-            {% for project in projects %}
-                <li>{{project}}</li>
-            {% endfor %}
-        </ul>
     </ul>
 </div>
 
 <div>
     <h1>Testcase management</h1>
     <ul>
-        <li>view</li>
-        <li>edit</li>
-        <li>export</li>
+        <li>View</li>
+        <li>Edit</li>
         {% for testcase in product.testcases.all  %}
             <li>{{testcase}}</li>
         {% endfor %}

@@ -46,6 +46,7 @@ class Testcase(core_models.TimeStampedModel):
 
     # basic info
     id_ext = models.CharField(max_length=20)
+    platform = models.CharField(max_length=20)
     name = models.CharField(max_length=200)
     script = models.CharField(max_length=200)
     args = models.CharField(max_length=200)

@@ -10,6 +10,10 @@ black = "*"
 [packages]
 django = "==2.2.5"
 pillow = "*"
+django-tables2 = "*"
+django-db-views = "*"
+django-filter = "*"
+django-bootstrap3 = "*"
 
 [requires]
 python_version = "3.8"

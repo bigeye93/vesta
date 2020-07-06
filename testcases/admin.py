@@ -29,6 +29,7 @@ class TestcaseAdmin(admin.ModelAdmin):
             {
                 "fields": (
                     "id_ext",
+                    "platform",
                     "name",
                     "script",
                     "args",
@@ -56,6 +57,7 @@ class TestcaseAdmin(admin.ModelAdmin):
 
     list_display = (
         "id_ext",
+        "platform",
         "name",
         "category",
         "sub_category",
@@ -64,6 +66,7 @@ class TestcaseAdmin(admin.ModelAdmin):
     )
 
     list_filter = (
+        "platform",
         "products",
         "category",
         "sub_category",

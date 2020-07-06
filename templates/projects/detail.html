@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+
+{% block page_title %}
+    {{project.product}}
+{% endblock page_title %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+
+<div>
+    <h3>Phase</h3>
+    <ul>
+        <li>{{project.phase}}</li>
+    </ul>
+    <h3>FW Rev.</h3>
+    <ul>
+        <li>{{project.fw_rev}}</li>
+    </ul>
+    <h3>Customer</h3>
+    <ul>
+        <li>{{project.customer}}</li>
+    </ul>
+</div>
+
+<div>
+    <li>Export</li>
+    <li>Import</li>
+    <li>Update</li>
+</div>
+
+<div>
+<link href="css/bootstrap.min.css" />
+    {% load render_table from django_tables2 %}
+    {% load bootstrap3 %}
+    {% if filter %}
+        <form action="" method="get" class="form form-inline">
+            {% bootstrap_form filter.form layout='inline' %}
+            {% bootstrap_button 'filter' %}
+        </form>
+    {% endif %}
+    {% render_table testresults %}
+</div>
+
+{% endblock %}
+

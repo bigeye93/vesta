@@ -39,7 +39,11 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    "django_tables2",
+    "django_filters",
+    "bootstrap3",
+]
 
 PROJECT_APPS = [
     "core.apps.CoreConfig",

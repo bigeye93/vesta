@@ -21,11 +21,19 @@ class Testresult(core_models.TimeStampedModel):
     )
 
     testcase = models.ForeignKey(
-        "testcases.Testcase", null=True, blank=True, on_delete=models.SET_NULL
+        "testcases.Testcase",
+        related_name="testresults",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
     )
 
     project = models.ForeignKey(
-        "projects.Project", null=True, blank=True, on_delete=models.SET_NULL
+        "projects.Project",
+        related_name="testresults",
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
     )
 
     status = models.CharField(
