@@ -27,12 +27,14 @@
 
 <div>
     <li>Export</li>
+    <a href="{% url "projects:some_view" project.pk %}">test</a>
+    {{project.pk}}
     <li>Import</li>
     <li>Update</li>
 </div>
 
 <div>
-<link href="css/bootstrap.min.css" />
+    <link href="css/bootstrap.min.css" />
     {% load render_table from django_tables2 %}
     {% load bootstrap3 %}
 

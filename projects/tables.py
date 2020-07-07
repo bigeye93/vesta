@@ -3,14 +3,11 @@ import django_filters
 from django.db import models as db_models
 from testresults import models as testresult_models
 
-# from testresults import Testresult
-
 
 class ResultTable(tables.Table):
     class Meta:
         model = testresult_models.Testresult
         row_attrs = {"data-id": lambda record: record.pk}
-        template_name = "django_tables2/bootstrap.html"
 
         fields = (
             "testcase",
